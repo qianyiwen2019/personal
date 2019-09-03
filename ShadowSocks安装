@@ -11,7 +11,11 @@ CentOS:
 yum install python-setuptools && easy_install pip 
 pip install shadowsocks
 命令启动
-ssserver -p 8080 -k password -m rc4-md5 -d start
+// ssserver -p 8080 -k password -m rc4-md5 -d start
+// sudo ssserver -p 443 -k password -m aes-256-cfb --user nobody -d start
+命令停止
+sudo ssserver -d stop
+
 
 使用配置文件启动
 
@@ -26,6 +30,7 @@ vi /etc/shadowsocks.json
   "method": "rc4-md5"
 }
 
+启动
 ssserver -c /etc/shadowsocks.json -d start
 
 PS: 记得执行iptables -F 关闭防火墙
