@@ -49,5 +49,6 @@ chmod +x bbr.sh
 1. 下载 ShadowsocksX，安装并配置（端口，密码与 server 上一致）
 https://github.com/shadowsocks/ShadowsocksX-NG                     (mac)
 https://github.com/shadowsocks/shadowsocks-windows/releases        (windows)
+https://github.com/netroby/shadowsocks-gui-for-windows             (windows低版本）
 2. 如果浏览器有代理，chrome 浏览器需使用“系统代理”而非“直接连接”
 
