@@ -41,3 +41,12 @@ PS: 记得执行iptables -F 关闭防火墙
 wget –no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 chmod +x bbr.sh
 ./bbr.sh
+
+
+
+
+客户端使用：
+1. 下载 ShadowsocksX，安装并配置（端口，密码与 server 上一致）
+https://github.com/shadowsocks/ShadowsocksX-NG
+2. 如果浏览器有代理，chrome 浏览器需使用“系统代理”而非“直接连接”
+
