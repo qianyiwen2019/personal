@@ -19,7 +19,7 @@ sudo ssserver -d stop
 
 使用配置文件启动
 
-vi /etc/shadowsocks.json
+vim /etc/shadowsocks.json
 
 {
   "server": "0.0.0.0",
@@ -42,7 +42,29 @@ wget –no-check-certificate https://github.com/teddysun/across/raw/master/bbr.s
 chmod +x bbr.sh
 ./bbr.sh
 
-
+验证 bbr 已经启动
+https://www.cnblogs.com/sunylat/p/9521881.html
+启动BBR。依次执行下面命令就可以了。
+  sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf 
+  sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf 
+  echo "net.core.default_qdisc = fq" >> /etc/sysctl.conf 
+  echo "net.ipv4.tcp_congestion_control = bbr" >> /etc/sysctl.conf 
+  sysctl -p  
+  reboot 
+当系统重新启动后，BBR就已经可以使用了！
+验证BBR是否已经可用。
+  A，验证当前TCP控制算法的命令：
+    sysctl net.ipv4.tcp_available_congestion_control 
+    返回值一般为：
+    net.ipv4.tcp_available_congestion_control = bbr cubic reno
+    或者为：
+    net.ipv4.tcp_available_congestion_control = reno cubic bbr
+  B，验证BBR是否已经启动。
+    sysctl net.ipv4.tcp_congestion_control 
+    返回值一般为：
+    net.ipv4.tcp_congestion_control = bbr
+    lsmod | grep bbr 
+    返回值有 tcp_bbr 模块即说明 bbr 已启动。注意：并不是所有的 VPS 都会有此返回值，若没有也属正常。
 
 
 客户端使用：
